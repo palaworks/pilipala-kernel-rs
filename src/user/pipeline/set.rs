@@ -1,9 +1,9 @@
-use std::future::Future;
-
 use anyhow::Result;
+use async_trait::async_trait;
 
 use crate::user::data::UserData;
 
-pub trait UserSetPipeline {
-    fn set(&self, data: UserData) -> dyn Future<Output = Result<()>>;
+#[async_trait]
+pub trait UserSetPipeline: Send + Sync {
+    async fn set(&self, data: UserData) -> Result<()>;
 }

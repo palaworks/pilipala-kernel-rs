@@ -1,10 +1,10 @@
-use std::future::Future;
-
 use anyhow::Result;
+use async_trait::async_trait;
 
 use crate::comment::data::CommentData;
 use crate::Id;
 
-pub trait CommentGetPipeline {
-    fn get(&self, id: Id) -> dyn Future<Output = Result<CommentData>>;
+#[async_trait]
+pub trait CommentGetPipeline: Send + Sync {
+    async fn call(&self, id: Id) -> Result<CommentData>;
 }

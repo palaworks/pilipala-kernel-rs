@@ -1,10 +1,10 @@
-use std::future::Future;
-
 use anyhow::Result;
+use async_trait::async_trait;
 
 use crate::user::data::UserData;
 use crate::Id;
 
-pub trait UserGetPipeline {
-    fn get(&self, id: Id) -> dyn Future<Output = Result<UserData>>;
+#[async_trait]
+pub trait UserGetPipeline: Send + Sync {
+    async fn call(&self, id: Id) -> Result<UserData>;
 }

@@ -1,9 +1,9 @@
-use std::future::Future;
-
 use anyhow::Result;
+use async_trait::async_trait;
 
-use crate::post::data::PostData;
+use crate::comment::data::CommentData;
 
-pub trait CommentSetPipeline {
-    fn set(&self, data: PostData) -> dyn Future<Output = Result<()>>;
+#[async_trait]
+pub trait CommentSetPipeline: Send + Sync {
+    async fn call(&self, data: CommentData) -> Result<()>;
 }

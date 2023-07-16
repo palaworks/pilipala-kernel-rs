@@ -1,10 +1,10 @@
-use std::future::Future;
-
 use anyhow::Result;
+use async_trait::async_trait;
 
-use crate::post::data::PostData;
+use crate::comment::data::CommentData;
 use crate::Id;
 
-pub trait CommentIniPipeline {
-    fn ini(&self, data: PostData) -> dyn Future<Output = Result<Id>>;
+#[async_trait]
+pub trait CommentIniPipeline: Send + Sync {
+    async fn call(&self, data: CommentData) -> Result<Id>;
 }

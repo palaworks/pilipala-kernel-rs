@@ -1,10 +1,10 @@
-use std::future::Future;
-
 use anyhow::Result;
+use async_trait::async_trait;
 
 use crate::post::data::PostData;
 use crate::Id;
 
-pub trait PostIniPipeline {
-    fn ini(&self, data: PostData) -> dyn Future<Output = Result<Id>>;
+#[async_trait]
+pub trait PostIniPipeline: Send + Sync {
+    async fn call(&self, data: PostData) -> Result<Id>;
 }

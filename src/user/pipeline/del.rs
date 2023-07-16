@@ -1,9 +1,9 @@
-use std::future::Future;
-
 use anyhow::Result;
+use async_trait::async_trait;
 
 use crate::Id;
 
-pub trait UserDelPipeline {
-    fn del(&self, id: Id) -> dyn Future<Output = Result<()>>;
+#[async_trait]
+pub trait UserDelPipeline: Send + Sync {
+    async fn call(&self, id: Id) -> Result<()>;
 }
