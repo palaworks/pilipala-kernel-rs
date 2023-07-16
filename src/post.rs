@@ -1,4 +1,5 @@
 use anyhow::Result;
+use async_trait::async_trait;
 use chrono::prelude::*;
 
 use crate::permission::PermissionLv;
@@ -10,6 +11,7 @@ pub mod db_entry;
 pub mod pipeline;
 pub mod provider;
 
+#[async_trait]
 pub trait Post {
     async fn get_title(&self) -> String;
     async fn update_title(&self, new: impl Into<String>) -> Result<()>;

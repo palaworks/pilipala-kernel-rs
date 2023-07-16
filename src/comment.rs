@@ -1,4 +1,5 @@
 use anyhow::Result;
+use async_trait::async_trait;
 use chrono::prelude::*;
 
 use crate::comment::data::{CommentPermission, CommentTarget};
@@ -10,6 +11,7 @@ pub mod db_entry;
 pub mod pipeline;
 pub mod provider;
 
+#[async_trait]
 pub trait Comment {
     async fn get_body(&self) -> String;
     async fn update_body(&self, new: impl Into<String>) -> Result<()>;

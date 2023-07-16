@@ -1,4 +1,5 @@
 use anyhow::Result;
+use async_trait::async_trait;
 use chrono::prelude::*;
 
 use crate::comment::data::CommentPermission;
@@ -12,6 +13,7 @@ pub mod db_entry;
 pub mod pipeline;
 pub mod provider;
 
+#[async_trait]
 pub trait User {
     fn get_id(&self) -> Id;
 

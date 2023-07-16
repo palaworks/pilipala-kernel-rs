@@ -11,3 +11,4 @@ license = "MIT"
 
 chrono = "0.4.24"
 anyhow = "1.0.70"
+async-trait = "0.1.68"
