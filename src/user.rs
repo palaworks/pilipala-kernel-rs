@@ -10,6 +10,7 @@ use crate::Id;
 
 pub mod data;
 pub mod db_entry;
+pub mod mapped;
 pub mod pipeline;
 pub mod provider;
 
